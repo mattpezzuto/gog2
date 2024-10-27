@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+.itemSelectHeader { grid-area: selectHeader}
+.itemQuestOppHeader { grid-area: questOppHeader}
+.itemQuestOppUnitsHeader { grid-area: questOppUnitsHeader}
+.itemQuestRewardsHeader { grid-area: questRewardsHeader}
+.itemSelect1 { grid-area: select1; }
+.itemSelect2 { grid-area: select2; }
+.itemSelect3 { grid-area: select3; }
+.itemSelect4 { grid-area: select4; }
+.itemSelect5 { grid-area: select5; }
+.itemQuestOpp1 { grid-area: questOpp1; }
+.itemQuestOpp2 { grid-area: questOpp2; }
+.itemQuestOpp3 { grid-area: questOpp3; }
+.itemQuestOpp4 { grid-area: questOpp4; }
+.itemQuestOpp5 { grid-area: questOpp5; }
+.itemQuestOppUnits1 { grid-area: questOppUnits1; }
+.itemQuestOppUnits2 { grid-area: questOppUnits2; }
+.itemQuestOppUnits3 { grid-area: questOppUnits3; }
+.itemQuestOppUnits4 { grid-area: questOppUnits4; }
+.itemQuestOppUnits5 { grid-area: questOppUnits5; }
+
+.itemQuestRewards1 { grid-area: questRewards1; }
+.itemQuestRewards2 { grid-area: questRewards2; }
+.itemQuestRewards3 { grid-area: questRewards3; }
+.itemQuestRewards4 { grid-area: questRewards4; }
+.itemQuestRewards5 { grid-area: questRewards5; }
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header nextBtn'
+    'selectHeader questOppHeader questOppUnitsHeader questRewardsHeader questRewardsHeader'
+    'select1 questOpp1 questOppUnits1 questRewards1 questRewards1'
+    'select2 questOpp2 questOppUnits2 questRewards2 questRewards2'
+    'select3 questOpp3 questOppUnits3 questRewards3 questRewards3'
+    'select4 questOpp4 questOppUnits4 questRewards4 questRewards4'
+    'select5 questOpp5 questOppUnits5 questRewards5 questRewards5';
+
+
+  gap: 8px;
+  background-color: #2196F3;
+  padding: 8px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+  }
+  li {
+    display: inline; /* or display: inline-block; */
+    margin-right: 10px; /* Optional spacing between items */
+  }
+
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Select Quest</p>
+  </div>
+
+  <div class="itemNextBtn">
+    <button class="button" (click)="onNext()">Next</button>
+  </div>
+
+  <div class="itemSelectHeader"></div>
+  <div class="itemQuestOppHeader"><b>Opponent</b></div>
+  <div class="itemQuestOppUnitsHeader"><b>Units</b></div>
+  <div class="itemQuestRewardsHeader"><b>Quest Rewards</b></div>
+
+  <div class="itemQuest1">
+    <button class="button" (click)="onSelectQuest(1)">Select</button>
+  </div>
+  <div class="itemQuestOpp1">
+    <img src="{{questCreature[0].getImage()}}" style="width:120;height:150px;">
+  </div>
+  <div class="itemQuestOppUnits1">{{questUnits[0]}}</div>
+  <div class="itemQuestRewards1">
+    <ul>
+      <li *ngFor="let reward of questRewardImages1;">
+        <img src="{{reward.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemQuest2">
+    <button class="button" (click)="onSelectQuest(2)">Select</button>
+  </div>
+  <div class="itemQuestOpp2">
+    <img src="{{questCreature[1].getImage()}}" style="width:120;height:150px;">
+  </div>
+  <div class="itemQuestOppUnits2">{{questUnits[1]}}</div>
+  <div class="itemQuestRewards2">
+    <ul>
+      <li *ngFor="let reward of questRewardImages2;">
+        <img src="{{reward.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemQuest3">
+    <button class="button" (click)="onSelectQuest(3)">Select</button>
+  </div>
+  <div class="itemQuestOpp3">
+    <img src="{{questCreature[2].getImage()}}" style="width:120;height:150px;">
+  </div>
+  <div class="itemQuestOppUnits3">{{questUnits[2]}}</div>
+  <div class="itemQuestRewards3">
+    <ul>
+      <li *ngFor="let reward of questRewardImages3;">
+        <img src="{{reward.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemQuest4">
+    <button class="button" (click)="onSelectQuest(4)">Select</button>
+  </div>
+  <div class="itemQuestOpp4">
+    <img src="{{questCreature[3].getImage()}}" style="width:120;height:150px;">
+  </div>
+  <div class="itemQuestOppUnits4">{{questUnits[3]}}</div>
+  <div class="itemQuestRewards4">
+    <ul>
+      <li *ngFor="let reward of questRewardImages4;">
+        <img src="{{reward.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>  
+  </div>
+  
+  <div class="itemQuest5">
+    <button class="button" (click)="onSelectQuest(5)">Select</button>
+  </div>
+  <div class="itemQuestOpp5">
+    <img src="{{questCreature[4].getImage()}}" style="width:120;height:150px;">
+  </div>
+  <div class="itemQuestOppUnits5">{{questUnits[4]}}</div>
+  <div class="itemQuestRewards5">
+    <ul>
+      <li *ngFor="let reward of questRewardImages5;">
+        <img src="{{reward.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+    
+  </div>
+
+  <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
+
+
+</div>
+
+</body>
+</html>
+
+

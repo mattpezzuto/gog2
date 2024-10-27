@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+.itemPlayerHeader { grid-area: playerHeader}
+.itemLifeHeader { grid-area: lifeHeader}
+.itemRecordHeader { grid-area: recordHeader}
+.itemBossDmgHeader { grid-area: bossDmgHeader}
+.itemUnitsHeader { grid-area: unitsHeader}
+.itemPlayer1 { grid-area: player1; }
+.itemPlayer2 { grid-area: player2; }
+.itemPlayer3 { grid-area: player3; }
+.itemPlayer4 { grid-area: player4; }
+.itemPlayer5 { grid-area: player5; }
+.itemPlayer6 { grid-area: player6; }
+.itemPlayer7 { grid-area: player7; }
+.itemPlayer8 { grid-area: player8; }
+.itemLifePlayer1 { grid-area: lifePlayer1; }
+.itemLifePlayer2 { grid-area: lifePlayer2; }
+.itemPLifelayer3 { grid-area: lifePlayer3; }
+.itemLifePlayer4 { grid-area: lifePlayer4; }
+.itemLifePlayer5 { grid-area: lifePlayer5; }
+.itemLifePlayer6 { grid-area: lifePlayer6; }
+.itemLifePlayer7 { grid-area: lifePlayer7; }
+.itemLifePlayer8 { grid-area: lifePlayer8; }
+.itemRecordPlayer1 { grid-area: recordPlayer1; }
+.itemRecordPlayer2 { grid-area: recordPlayer2; }
+.itemPRecordlayer3 { grid-area: recordPlayer3; }
+.itemRecordPlayer4 { grid-area: recordPlayer4; }
+.itemRecordPlayer5 { grid-area: recordPlayer5; }
+.itemRecordPlayer6 { grid-area: recordPlayer6; }
+.itemRecordPlayer7 { grid-area: recordPlayer7; }
+.itemRecordPlayer8 { grid-area: recordPlayer8; }
+.itemBossDmg1 { grid-area: bossDmg1; }
+.itemBossDmg2 { grid-area: bossDmg2; }
+.itemBossDmg3 { grid-area: bossDmg3; }
+.itemBossDmg4 { grid-area: bossDmg4; }
+.itemBossDmg5 { grid-area: bossDmg5; }
+.itemBossDmg6 { grid-area: bossDmg6; }
+.itemBossDmg7 { grid-area: bossDmg7; }
+.itemBossDmg8 { grid-area: bossDmg8; }
+.itemUnits1 { grid-area: units1; }
+.itemUnits2 { grid-area: units2; }
+.itemUnits3 { grid-area: units3; }
+.itemUnits4 { grid-area: units4; }
+.itemUnits5 { grid-area: units5; }
+.itemUnits6 { grid-area: units6; }
+.itemUnits7 { grid-area: units7; }
+.itemUnits8 { grid-area: units8; }
+.itemNextBtn { grid-area: nextBtn; }
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header nextBtn'
+    'playerHeader lifeHeader recordHeader bossDmgHeader unitsHeader'
+    'player1 lifePlayer1 recordPlayer1 bossDmg1 units1'
+    'player2 lifePlayer2 recordPlayer2 bossDmg2 units2'
+	  'player3 lifePlayer3 recordPlayer3 bossDmg3 units3'
+	  'player4 lifePlayer4 recordPlayer4 bossDmg4 units4'
+    'player5 lifePlayer5 recordPlayer5 bossDmg5 units5'
+    'player6 lifePlayer6 recordPlayer6 bossDmg6 units6'
+    'player7 lifePlayer7 recordPlayer7 bossDmg7 units7'
+    'player8 lifePlayer8 recordPlayer8 bossDmg8 units8';
+
+  gap: 8px;
+  background-color: #2196F3;
+  padding: 8px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+  }
+  li {
+    display: inline; /* or display: inline-block; */
+    margin-right: 10px; /* Optional spacing between items */
+  }
+
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Score Screen</p>
+  </div>
+
+  <div class="itemPlayerHeader"><b>Player</b></div>
+  <div class="itemLifePlayerHeader"><b>Life</b></div>
+  <div class="itemRecordPlayerHeader"><b>Record</b></div>
+  <div class="itemBossDmgHeader"><b>Boss Damage</b></div>
+  <div class="itemUnitsHeader"><b>Units</b></div>
+
+  <div class="itemPlayer1">{{sortedPlayerList[0].name}}</div>
+  <div class="itemLifePlayer1">{{sortedPlayerList[0].life}}</div>
+  <div class="recordPlayer1">{{sortedPlayerList[0].getRecord()}}</div>
+  <div class="itemBossDmg1">{{sortedPlayerList[0].getBossDmg()}}</div>
+  <div class="units1">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[0].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+  
+  <div class="itemPlayer2">{{sortedPlayerList[1].name}}</div>
+  <div class="itemLifePlayer2">{{sortedPlayerList[1].life}}</div>
+  <div class="recordPlayer2">{{sortedPlayerList[1].getRecord()}}</div>
+  <div class="itemBossDmg2">{{sortedPlayerList[1].getBossDmg()}}</div>
+  <div class="units2">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[1].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer3">{{sortedPlayerList[2].name}}</div>
+  <div class="itemLifePlayer3">{{sortedPlayerList[2].life}}</div>
+  <div class="recordPlayer3">{{sortedPlayerList[2].getRecord()}}</div>
+  <div class="itemBossDmg3">{{sortedPlayerList[2].getBossDmg()}}</div>
+  <div class="units3">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[2].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer4">{{sortedPlayerList[3].name}}</div>
+  <div class="itemLifePlayer4">{{sortedPlayerList[3].life}}</div>
+  <div class="recordPlayer4">{{sortedPlayerList[3].getRecord()}}</div>
+  <div class="itemBossDmg4">{{sortedPlayerList[3].getBossDmg()}}</div>
+  <div class="units4">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[3].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer5">{{sortedPlayerList[4].name}}</div>
+  <div class="itemLifePlayer5">{{sortedPlayerList[4].life}}</div>
+  <div class="recordPlayer5">{{sortedPlayerList[4].getRecord()}}</div>
+  <div class="itemBossDmg5">{{sortedPlayerList[4].getBossDmg()}}</div>
+  <div class="units5">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[4].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer6">{{sortedPlayerList[5].name}}</div>
+  <div class="itemLifePlayer6">{{sortedPlayerList[5].life}}</div>
+  <div class="recordPlayer6">{{sortedPlayerList[5].getRecord()}}</div>
+  <div class="itemBossDmg6">{{sortedPlayerList[5].getBossDmg()}}</div>
+  <div class="units6">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[5].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer7">{{sortedPlayerList[6].name}}</div>
+  <div class="itemLifePlayer7">{{sortedPlayerList[6].life}}</div>
+  <div class="recordPlayer7">{{sortedPlayerList[6].getRecord()}}</div>
+  <div class="itemBossDmg7">{{sortedPlayerList[6].getBossDmg()}}</div>
+  <div class="units7">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[6].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemPlayer8">{{sortedPlayerList[7].name}}</div>
+  <div class="itemLifePlayer8">{{sortedPlayerList[7].life}}</div>
+  <div class="recordPlayer8">{{sortedPlayerList[7].getRecord()}}</div>
+  <div class="itemBossDmg8">{{sortedPlayerList[7].getBossDmg()}}</div>
+  <div class="units8">
+    <ul>
+      <li *ngFor="let creature of sortedPlayerList[7].creatureList;">
+        <img src="{{creature.getImage()}}" style="width:120;height:150px;">
+      </li>
+    </ul>
+  </div>
+
+  <div class="itemNextBtn">
+        <button class="button" (click)="onNext()">Next</button>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+.itemGold { grid-area: gold; }
+.itemMenu { grid-area: menu; }
+.itemBoard { grid-area: board; }
+.itemShop1 { grid-area: shop1; }
+.itemShop2 { grid-area: shop2; }
+.itemShop3 { grid-area: shop3; }
+.itemShopBtn1 { grid-area: btnShop1; }
+.itemShopBtn2 { grid-area: btnShop2; }
+.itemShopBtn3 { grid-area: btnShop3; }
+.itemBoard1 { grid-area: board1; }
+.itemBoard2 { grid-area: board2; }
+.itemBoard3 { grid-area: board3; }
+.itemBoard4 { grid-area: board4; }
+.itemBoard5 { grid-area: board5; }
+.itemBoard6 { grid-area: board6; }
+.itemBoardBtn1 { grid-area: boardBtn1; }
+.itemBoardBtn2 { grid-area: boardBtn2; }
+.itemBoardBtn3 { grid-area: boardBtn3; }
+.itemBoardBtn4 { grid-area: boardBtn4; }
+.itemBoardBtn5 { grid-area: boardBtn5; }
+.itemBoardBtn6 { grid-area: boardBtn6; }
+.itemGearHeader { grid-area: gearHeader; }
+.itemHand1 { grid-area: hand1; }
+.itemHand2 { grid-area: hand2; }
+.itemHand3 { grid-area: hand3; }
+.itemHand4 { grid-area: hand4; }
+.itemHand5 { grid-area: hand5; }
+.itemHand6 { grid-area: hand6; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header gold'
+    'menu shop1 shop1 shop2 shop2 shop3 shop3'
+    'menu btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'
+	  'menu board board board board board board'
+	  'menu board1 board2 board3 board4 board5 board6'
+    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5 boardBtn6'
+    'gearHeader hand1 hand2 hand3 hand4 hand5 hand6';
+
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Tavern</p>
+  </div>
+  <div class="itemGold">
+    <button class="button" (click)="onNext()">Proceed to Battle</button>
+    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>
+    <!-- <p>Time Left:  {{this.counter}}</p> -->
+    <button class="button" (click)="onUpgradeRecruitment()">Upgrade Recruitment (100g)</button>
+    <button class="button" (click)="onRefresh()">Refresh ({{refreshCounter}})</button>
+    </div>
+
+  <div class="itemMenu">
+    <p>Available Gear</p>
+    <ul>
+      <!-- <li *ngFor="let gear of localGameState.playerList[0].getSortedGearList();">
+        {{gear.getName()}}
+      </li> -->
+    </ul>
+  </div>
+
+  <div class="gearHeader">
+    <p>Gear:</p>
+  </div>
+ 
+
+  <div class="itemShop1">
+    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>
+    <img src="{{getTavernCreature(0).creature.getImage()}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShop2">
+    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>
+    <img src="{{getTavernCreature(1).creature.getImage()}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShop3">
+    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>
+    <img src="{{getTavernCreature(2).creature.getImage()}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShopBtn1">
+    <button class="button" *ngIf="!getTavernCreature(0).sold && !isPartyFull()" (click)="onRecruit(0)">Recruit</button>
+    <button class="button" *ngIf="getTavernCreature(0).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(0)">Recruit</button>
+  </div>
+  <div class="itemShopBtn2">
+    <button class="button" *ngIf="!getTavernCreature(1).sold && !isPartyFull()" (click)="onRecruit(1)">Recruit</button>
+    <button class="button" *ngIf="getTavernCreature(1).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(1)">Recruit</button>
+  </div>
+  <div class="itemShopBtn3">
+    <button class="button" *ngIf="!getTavernCreature(2).sold && !isPartyFull()" (click)="onRecruit(2)">Recruit</button>
+    <button class="button" *ngIf="getTavernCreature(2).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(2)">Recruit</button>
+  </div>
+
+  <div class="itemBoard">Board</div>  
+  <div class="itemBoard1">
+    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>
+    <img src="{{getPlayersBoard(0).getImage()}}" style="width:120;height:150px;">
+
+  </div>  
+  <div class="itemBoard2">
+    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).getName()}}</p>
+    <img src="{{getPlayersBoard(1).getImage()}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemBoard3">
+    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).getName()}}</p>
+    <img src="{{getPlayersBoard(2).getImage()}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemBoard4">
+    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).getName()}}</p>
+    <img src="{{getPlayersBoard(3).getImage()}}" style="width:120;height:150px;">
+    <button class="button" *ngIf="getIsSlotLocked(3)" (click)="onUnlock(3)">Unlock (100g)</button>
+  </div>  
+  <div class="itemBoard5">
+    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>
+    <img src="{{getPlayersBoard(4).getImage()}}" style="width:120;height:150px;">
+    <button class="button" *ngIf="getIsSlotLocked(4) && !getIsSlotLocked(3)" (click)="onUnlock(4)">Unlock (100g)</button>
+  </div>  
+  <div class="itemBoard6">
+    <p *ngIf=getPlayersBoard(5)> {{getPlayersBoard(5).getName()}}</p>
+    <img src="{{getPlayersBoard(5).getImage()}}" style="width:120;height:150px;">
+    <button class="button" *ngIf="getIsSlotLocked(5) && !getIsSlotLocked(4)" (click)="onUnlock(5)">Unlock (100g)</button>
+  </div>  
+
+  
+  <div class="itemBoardBtn1">
+    <button class="button" (click)="onMoveRight(0)">>>></button>
+    <button class="button" (click)="onSell(0)">Sell</button>
+  </div>
+  <div class="itemBoardBtn2">
+    <button class="button" (click)="onMoveRight(0)"><<<</button>
+    <button class="button" (click)="onSell(1)">Sell</button>
+    <button class="button" (click)="onMoveRight(1)">>>></button>
+  </div>
+  <div class="itemBoardBtn3">
+    <button class="button" (click)="onMoveRight(1)"><<<</button>
+    <button class="button" (click)="onSell(2)">Sell</button>
+    <button class="button" (click)="onMoveRight(2)">>>></button>
+  </div>
+  <div class="itemBoardBtn4">
+    <button class="button" (click)="onMoveRight(2)"><<<</button>
+    <button class="button" (click)="onSell(3)">Sell</button>
+    <button class="button" (click)="onMoveRight(3)">>>></button>
+  </div>
+  <div class="itemBoardBtn5">
+    <button class="button" (click)="onMoveRight(3)"><<<</button>
+    <button class="button" (click)="onSell(4)">Sell</button>
+    <button class="button" (click)="onMoveRight(4)">>>></button>
+  </div>
+  <div class="itemBoardBtn6">
+    <button class="button" (click)="onMoveRight(4)"><<<</button>
+    <button class="button" (click)="onSell(5)">Sell</button>
+    <button class="button" (click)="onMoveRight(5)">>>></button>
+  </div>
+  <div class="itemHand1">
+    <button *ngIf="isCreatureInSlot(0)" class="button" (click)="toggleSelection(0)">{{getCurrentSelection(0)}}</button>
+  </div>  
+  <div class="itemHand2">
+    <button *ngIf="isCreatureInSlot(1)" class="button" (click)="toggleSelection(1)">{{getCurrentSelection(1)}}</button>
+  </div>
+  <div class="itemHand3">
+    <button *ngIf="isCreatureInSlot(2)" class="button" (click)="toggleSelection(2)">{{getCurrentSelection(2)}}</button>
+  </div>  
+  <div class="itemHand4">
+    <button *ngIf="isCreatureInSlot(3)" class="button" (click)="toggleSelection(3)">{{getCurrentSelection(3)}}</button>
+  </div>  
+  <div class="itemHand5">
+    <button *ngIf="isCreatureInSlot(4)" class="button" (click)="toggleSelection(4)">{{getCurrentSelection(4)}}</button>
+  </div>  
+  <div class="itemHand6">
+    <button *ngIf="isCreatureInSlot(5)" class="button" (click)="toggleSelection(5)">{{getCurrentSelection(5)}}</button>
+  </div>  
+
+</div>
+
+<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
+<p>Turn = {{this.localGameState.turn}}</p>
+
+</body>
+</html>

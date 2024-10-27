@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+.itemNextBtn { grid-area: nextBtn}
+.itemPlayerHeader { grid-area: playerHeader}
+.itemBattleLog { grid-area: battleLog}
+.itemBattleLogBtn { grid-area: battleLogBtn}
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header nextBtn'
+    'battleLogBtn playerHeader playerHeader playerHeader playerHeader'
+    'battleLog battleLog battleLog battleLog battleLog';
+
+  gap: 8px;
+  background-color: #2196F3;
+  padding: 8px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Battle Quest - Defeating the encounter will give you the quest reward</p>
+  </div>
+
+  <div class="itemNextBtn">
+    <button class="button" (click)="onNext()">Next</button>
+  </div>
+
+  <div class="itemBattleLogBtn">
+    <button class="button" (click)="onToggleBattleLog()">Toggle Battle Log</button>
+  </div>  
+
+  <div class="itemPlayerHeader"><b>{{titleLog}}</b></div>
+  <div class="itemBattleLog">
+    <ul>
+        <li *ngFor="let battleLog of battleLogs; let indeOfElement=index;">
+            {{battleLog}}
+        </li>
+    </ul>
+  </div>
+  
+
+
+
+</div>
+<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
+
+</body>
+</html>
+
+
