@@ -32,6 +32,17 @@
 .itemHand5 { grid-area: hand5; }
 .itemHand6 { grid-area: hand6; }
 
+
+  /* grid-template-rows: auto 1fr;
+  grid-gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+  background-color: ; /* Dark wood background 
+  border-radius: 15px;
+  border: 3px solid #a68c63;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px; */
+
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -43,9 +54,11 @@
     'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5 boardBtn6'
     'gearHeader hand1 hand2 hand3 hand4 hand5 hand6';
 
-  gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
+  grid-gap: 5px;
+  background-color: #3a2a1a;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+  border: 3px solid #a68c63;
+  padding: 5px;
 }
 
 .grid-container > div {

@@ -1,3 +1,26 @@
+
+.tavern-grid {
+  display: grid;
+  display: grid;
+  grid-template-areas:
+    'header header header header header header gold'
+    'menu shop1 shop1 shop2 shop2 shop3 shop3'
+    'menu btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'
+	  'menu board board board board board board'
+	  'menu board1 board2 board3 board4 board5 board6'
+    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5 boardBtn6'
+    'gearHeader hand1 hand2 hand3 hand4 hand5 hand6';
+  
+  grid-gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+  background-color: #3a2a1a; /* Dark wood background */
+  border-radius: 15px;
+  border: 3px solid #a68c63;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
 /* creature.component.css */
 .creature-container {
     display: flex;
