@@ -209,17 +209,18 @@ export class TavernComponent {
     }
   }
 
-  pullRandomCreature(): Creature {
+  pullRandomCreatureForPlayer(playerId:string): Creature {
     var originalCreature:Creature = this.localGameState.creaturePool.tier1[this.getRandomSlot(1)];
+    var newCreature = originalCreature.clone();
+    newCreature.setPlayerId(playerId);
     return originalCreature.clone(); // Return a copy of the creature
   }
 
   onNext() {
 
-    for (var i = 3; i < this.localGameState.playerList.length; i++ ) {
+    for (var i = 1; i < this.localGameState.playerList.length; i++ ) {
         if (this.localGameState.playerList[i].creatureList.length < 8) {
-          this.localGameState.playerList[i].creatureList.push(this.pullRandomCreature());
-
+          this.localGameState.playerList[i].creatureList.push(this.pullRandomCreatureForPlayer(i.toString()));
         }
         }
     this.localGameState.stage++;
