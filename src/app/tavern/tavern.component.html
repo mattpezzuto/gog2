@@ -88,14 +88,32 @@
   <div class="itemShop1">
     <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>
     <img src="{{getTavernCreature(0).creature.getImage()}}" style="width:120;height:150px;">
+    <div class="creature-status">
+      <p>Attack Physical/Magical: {{ getTavernCreature(0).creature.getCurrentStats().attack }} / {{ getTavernCreature(0).creature.getCurrentStats().magicAttack }}</p>
+      <p>Life: {{ getTavernCreature(0).creature.getCurrentStats().life }}</p>
+      <p>Armor: {{ getTavernCreature(0).creature.getCurrentStats().armor }}</p>
+      <p>Magic Resist: {{ getTavernCreature(0).creature.getCurrentStats().magicResist }}</p>
+    </div>
   </div>  
   <div class="itemShop2">
     <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>
     <img src="{{getTavernCreature(1).creature.getImage()}}" style="width:120;height:150px;">
+    <div class="creature-status">
+      <p>Attack Physical/Magical: {{ getTavernCreature(1).creature.getCurrentStats().attack }} / {{ getTavernCreature(1).creature.getCurrentStats().magicAttack }}</p>
+      <p>Life: {{ getTavernCreature(1).creature.getCurrentStats().life }}</p>
+      <p>Armor: {{ getTavernCreature(1).creature.getCurrentStats().armor }}</p>
+      <p>Magic Resist: {{ getTavernCreature(1).creature.getCurrentStats().magicResist }}</p>
+    </div>
   </div>  
   <div class="itemShop3">
     <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>
     <img src="{{getTavernCreature(2).creature.getImage()}}" style="width:120;height:150px;">
+    <div class="creature-status">
+      <p>Attack Physical/Magical: {{ getTavernCreature(2).creature.getCurrentStats().attack }} / {{ getTavernCreature(2).creature.getCurrentStats().magicAttack }}</p>
+      <p>Life: {{ getTavernCreature(2).creature.getCurrentStats().life }}</p>
+      <p>Armor: {{ getTavernCreature(2).creature.getCurrentStats().armor }}</p>
+      <p>Magic Resist: {{ getTavernCreature(2).creature.getCurrentStats().magicResist }}</p>
+    </div>
   </div>  
   <div class="itemShopBtn1">
     <button class="button" *ngIf="!getTavernCreature(0).sold && !isPartyFull()" (click)="onRecruit(0)">Recruit</button>

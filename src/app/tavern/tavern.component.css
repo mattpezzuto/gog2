@@ -1,0 +1,31 @@
+/* creature.component.css */
+.creature-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 200px;
+    background-color: #f5f5f5;
+  }
+  
+  .creature-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .creature-status {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;  /* Smaller font size */
+    line-height: 1.2; /* Compact spacing between lines */
+  }
+  
+  .creature-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
