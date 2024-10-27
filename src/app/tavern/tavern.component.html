@@ -64,11 +64,11 @@
     <p>Tavern</p>
   </div>
   <div class="itemGold">
-    <button class="button" (click)="onNext()">Proceed to Battle</button>
+    <button class="hearthstone-button" (click)="onNext()">Proceed to Battle</button>
     <p>Gold = {{this.localGameState.playerList[0].gold}} </p>
     <!-- <p>Time Left:  {{this.counter}}</p> -->
-    <button class="button" (click)="onUpgradeRecruitment()">Upgrade Recruitment (100g)</button>
-    <button class="button" (click)="onRefresh()">Refresh ({{refreshCounter}})</button>
+    <button class="hearthstone-button" (click)="onUpgradeRecruitment()">Upgrade Recruitment (100g)</button>
+    <button class="hearthstone-button" (click)="onRefresh()">Refresh ({{refreshCounter}})</button>
     </div>
 
   <div class="itemMenu">
@@ -116,16 +116,16 @@
     </div>
   </div>  
   <div class="itemShopBtn1">
-    <button class="button" *ngIf="!getTavernCreature(0).sold && !isPartyFull()" (click)="onRecruit(0)">Recruit</button>
-    <button class="button" *ngIf="getTavernCreature(0).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(0)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="!getTavernCreature(0).sold && !isPartyFull() && haveGold()" (click)="onRecruit(0)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="getTavernCreature(0).sold || isPartyFull() || !haveGold()" [disabled] = "true" (click)="onRecruit(0)">Recruit</button>
   </div>
   <div class="itemShopBtn2">
-    <button class="button" *ngIf="!getTavernCreature(1).sold && !isPartyFull()" (click)="onRecruit(1)">Recruit</button>
-    <button class="button" *ngIf="getTavernCreature(1).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(1)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="!getTavernCreature(1).sold && !isPartyFull() && haveGold()" (click)="onRecruit(1)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="getTavernCreature(1).sold || isPartyFull() || !haveGold()" [disabled] = "true" (click)="onRecruit(1)">Recruit</button>
   </div>
   <div class="itemShopBtn3">
-    <button class="button" *ngIf="!getTavernCreature(2).sold && !isPartyFull()" (click)="onRecruit(2)">Recruit</button>
-    <button class="button" *ngIf="getTavernCreature(2).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(2)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="!getTavernCreature(2).sold && !isPartyFull() && haveGold()" (click)="onRecruit(2)">Recruit</button>
+    <button class="hearthstone-button" *ngIf="getTavernCreature(2).sold || isPartyFull() || !haveGold()" [disabled] = "true" (click)="onRecruit(2)">Recruit</button>
   </div>
 
   <div class="itemBoard">Adventuring Party:</div>  
@@ -168,7 +168,7 @@
       <p>Armor: {{ getPlayersBoard(3).getCurrentStats().armor }}</p>
       <p>Magic Resist: {{ getPlayersBoard(3).getCurrentStats().magicResist }}</p>
     </div>
-    <button class="button" *ngIf="getIsSlotLocked(3)" (click)="onUnlock(3)">Unlock (100g)</button>
+    <button class="hearthstone-button" *ngIf="getIsSlotLocked(3)" (click)="onUnlock(3)">Unlock (100g)</button>
   </div>  
   <div class="itemBoard5">
     <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>
@@ -179,7 +179,7 @@
       <p>Armor: {{ getPlayersBoard(4).getCurrentStats().armor }}</p>
       <p>Magic Resist: {{ getPlayersBoard(4).getCurrentStats().magicResist }}</p>
     </div>
-    <button class="button" *ngIf="getIsSlotLocked(4) && !getIsSlotLocked(3)" (click)="onUnlock(4)">Unlock (100g)</button>
+    <button class="hearthstone-button" *ngIf="getIsSlotLocked(4) && !getIsSlotLocked(3)" (click)="onUnlock(4)">Unlock (100g)</button>
   </div>  
   <div class="itemBoard6">
     <p *ngIf=getPlayersBoard(5)> {{getPlayersBoard(5).getName()}}</p>
@@ -190,56 +190,56 @@
       <p>Armor: {{ getPlayersBoard(5).getCurrentStats().armor }}</p>
       <p>Magic Resist: {{ getPlayersBoard(5).getCurrentStats().magicResist }}</p>
     </div>
-    <button class="button" *ngIf="getIsSlotLocked(5) && !getIsSlotLocked(4)" (click)="onUnlock(5)">Unlock (100g)</button>
+    <button class="hearthstone-button" *ngIf="getIsSlotLocked(5) && !getIsSlotLocked(4)" (click)="onUnlock(5)">Unlock (100g)</button>
   </div>  
 
   
   <div class="itemBoardBtn1">
-    <button class="button" (click)="onMoveRight(0)">>>></button>
-    <button class="button" (click)="onSell(0)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(0)">>>></button>
+    <button class="hearthstone-button" (click)="onSell(0)">Sell</button>
   </div>
   <div class="itemBoardBtn2">
-    <button class="button" (click)="onMoveRight(0)"><<<</button>
-    <button class="button" (click)="onSell(1)">Sell</button>
-    <button class="button" (click)="onMoveRight(1)">>>></button>
+    <button class="hearthstone-button" (click)="onMoveRight(0)"><<<</button>
+    <button class="hearthstone-button" (click)="onSell(1)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(1)">>>></button>
   </div>
   <div class="itemBoardBtn3">
-    <button class="button" (click)="onMoveRight(1)"><<<</button>
-    <button class="button" (click)="onSell(2)">Sell</button>
-    <button class="button" (click)="onMoveRight(2)">>>></button>
+    <button class="hearthstone-button" (click)="onMoveRight(1)"><<<</button>
+    <button class="hearthstone-button" (click)="onSell(2)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(2)">>>></button>
   </div>
   <div class="itemBoardBtn4">
-    <button class="button" (click)="onMoveRight(2)"><<<</button>
-    <button class="button" (click)="onSell(3)">Sell</button>
-    <button class="button" (click)="onMoveRight(3)">>>></button>
+    <button class="hearthstone-button" (click)="onMoveRight(2)"><<<</button>
+    <button class="hearthstone-button" (click)="onSell(3)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(3)">>>></button>
   </div>
   <div class="itemBoardBtn5">
-    <button class="button" (click)="onMoveRight(3)"><<<</button>
-    <button class="button" (click)="onSell(4)">Sell</button>
-    <button class="button" (click)="onMoveRight(4)">>>></button>
+    <button class="hearthstone-button" (click)="onMoveRight(3)"><<<</button>
+    <button class="hearthstone-button" (click)="onSell(4)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(4)">>>></button>
   </div>
   <div class="itemBoardBtn6">
-    <button class="button" (click)="onMoveRight(4)"><<<</button>
-    <button class="button" (click)="onSell(5)">Sell</button>
-    <button class="button" (click)="onMoveRight(5)">>>></button>
+    <button class="hearthstone-button" (click)="onMoveRight(4)"><<<</button>
+    <button class="hearthstone-button" (click)="onSell(5)">Sell</button>
+    <button class="hearthstone-button" (click)="onMoveRight(5)">>>></button>
   </div>
   <div class="itemHand1">
-    <button *ngIf="isCreatureInSlot(0)" class="button" (click)="toggleSelection(0)">{{getCurrentSelection(0)}}</button>
+    <button *ngIf="isCreatureInSlot(0)" class="hearthstone-button" (click)="toggleSelection(0)">{{getCurrentSelection(0)}}</button>
   </div>  
   <div class="itemHand2">
-    <button *ngIf="isCreatureInSlot(1)" class="button" (click)="toggleSelection(1)">{{getCurrentSelection(1)}}</button>
+    <button *ngIf="isCreatureInSlot(1)" class="hearthstone-button" (click)="toggleSelection(1)">{{getCurrentSelection(1)}}</button>
   </div>
   <div class="itemHand3">
-    <button *ngIf="isCreatureInSlot(2)" class="button" (click)="toggleSelection(2)">{{getCurrentSelection(2)}}</button>
+    <button *ngIf="isCreatureInSlot(2)" class="hearthstone-button" (click)="toggleSelection(2)">{{getCurrentSelection(2)}}</button>
   </div>  
   <div class="itemHand4">
-    <button *ngIf="isCreatureInSlot(3)" class="button" (click)="toggleSelection(3)">{{getCurrentSelection(3)}}</button>
+    <button *ngIf="isCreatureInSlot(3)" class="hearthstone-button" (click)="toggleSelection(3)">{{getCurrentSelection(3)}}</button>
   </div>  
   <div class="itemHand5">
-    <button *ngIf="isCreatureInSlot(4)" class="button" (click)="toggleSelection(4)">{{getCurrentSelection(4)}}</button>
+    <button *ngIf="isCreatureInSlot(4)" class="hearthstone-button" (click)="toggleSelection(4)">{{getCurrentSelection(4)}}</button>
   </div>  
   <div class="itemHand6">
-    <button *ngIf="isCreatureInSlot(5)" class="button" (click)="toggleSelection(5)">{{getCurrentSelection(5)}}</button>
+    <button *ngIf="isCreatureInSlot(5)" class="hearthstone-button" (click)="toggleSelection(5)">{{getCurrentSelection(5)}}</button>
   </div>  
 
 </div>

@@ -89,6 +89,10 @@ export class TavernComponent {
     }
   }
 
+  haveGold(): boolean {
+    return this.localGameState.playerList[0].gold >= 100;
+  }
+
   onSell(slot: number) {
     if (this.localGameState.playerList[0].creatureList.length > slot) {
       var tempCreature : Creature = this.localGameState.playerList[0].creatureList[slot];
