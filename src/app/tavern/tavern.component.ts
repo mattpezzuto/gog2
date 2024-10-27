@@ -76,6 +76,9 @@ export class TavernComponent {
     this.localGameState.creaturePool.tier1.forEach((e: any) => {
       console.log(e);
     });
+    this.localGameState.playerList[0].creatureList.forEach((c: any) => {
+      c.reset();
+    });
 
   }
 

@@ -66,7 +66,7 @@ export abstract class Creature {
 
     getGlobalBuffService(): GlobalBuffService { return this.globalBuffService; }
     getPlayerId(): string { return this.playerId; }
-    
+
     abstract getCreatureStatsBaseline() : CreatureStats;
     abstract getCreatureType() : CreatureType;
     abstract getImage(): string;
@@ -75,6 +75,10 @@ export abstract class Creature {
     getCurrentLife(): number {
         const globalLifeBuff = this.globalBuffService.getGlobalLifeBuff(this.playerId, CreatureType[this.creatureType]);
         return this.currentStats.life + this.getPermanentLifeBuff() + globalLifeBuff; 
+    }
+
+    isFilled(): boolean {
+        return this.creatureType !== CreatureType.Empty;
     }
 
     getCreatureStats(): CreatureStats { return this.creatureStats; }
