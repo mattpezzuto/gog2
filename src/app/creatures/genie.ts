@@ -16,7 +16,7 @@ export class Genie extends Creature {
         tempCreatureStats.charisma = 10;
         tempCreatureStats.armor = 3;
         tempCreatureStats.magicResist = 25;
-        tempCreatureStats.image = 'assets/images/' + 'genie.png';
+        tempCreatureStats.image = 'assets/images/' + 'genie.gif';
         tempCreatureStats.lifeBuff = 0;
         tempCreatureStats.armorBuff = 0;
         tempCreatureStats.magicBuff = 0;
