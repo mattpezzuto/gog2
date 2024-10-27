@@ -65,28 +65,28 @@ export class AppComponent {
   createInitialCreaturePool(): Creature[] {
     let creatureList: Creature[] = [];
     for (var i = 0; i < 3; i++) {
-    this.gameState.creaturePool.addCreatureToPool(1, new Gnome(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Goblin(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Kobold(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Dwarf(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new SkeletonWarrior(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Orc(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new FrostGiant(this.globalBuffService));
-
-    this.gameState.creaturePool.addCreatureToPool(1, new TreeOfLife(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Wizard(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Necromancer(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Archer(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Bard(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new TrojanHorse(this.globalBuffService));
-    }
+      this.gameState.creaturePool.tier1.push(new Gnome(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Goblin(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Kobold(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Dwarf(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new SkeletonWarrior(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Orc(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new FrostGiant(this.globalBuffService));
+  
+      this.gameState.creaturePool.tier1.push(new TreeOfLife(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Wizard(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Necromancer(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new Archer(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push( new Bard(this.globalBuffService));
+      this.gameState.creaturePool.tier1.push(new TrojanHorse(this.globalBuffService));
+      }
 
     for(var i = 0; i < 8; i++) {
-       this.gameState.creaturePool.addCreatureToPool(8, new InfestedRat(this.globalBuffService));
+       this.gameState.creaturePool.tier1.push(new InfestedRat(this.globalBuffService));
     }
 
-    this.gameState.creaturePool.addCreatureToPool(1, new Genie(this.globalBuffService));
-    this.gameState.creaturePool.addCreatureToPool(1, new Sorcerous(this.globalBuffService));
+    this.gameState.creaturePool.tier1.push(new Genie(this.globalBuffService));
+    this.gameState.creaturePool.tier1.push(new Sorcerous(this.globalBuffService));
 
     return creatureList;
   }

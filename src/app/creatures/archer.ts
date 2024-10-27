@@ -2,6 +2,10 @@ import { Creature, CreatureType } from "./creature";
 import { CreatureStats } from "../creatureStats";
 
 export class Archer extends Creature {
+    public override clone(): Creature {
+        return new Archer(this.getGlobalBuffService(), this.getPlayerId());
+    }
+
     override getImage(): string {
         return this.getCreatureStats().image;
     }

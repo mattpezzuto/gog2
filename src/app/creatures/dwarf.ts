@@ -2,10 +2,13 @@ import { Creature, CreatureType } from "./creature";
 import { CreatureStats } from "../creatureStats";
 
 export class Dwarf extends Creature {
+    public override clone(): Creature {
+        return new Dwarf(this.getGlobalBuffService(), this.getPlayerId());
+    }
+
     override getImage(): string {
         return this.getCreatureStats().image;
     }
-//                 name = 'Dwarf'; life = 20; attack = 10; dex = 6; armor = 3; image = 'dwarfwarrior.png'; break;
 
     override getCreatureStatsBaseline(): CreatureStats {
         var tempCreatureStats = new CreatureStats();

@@ -72,6 +72,10 @@ export class TavernComponent {
 
     this.refreshTavernBoard();
     this.localGameState.playerList[0].gold += 100;
+    console.log('len=' + this.localGameState.creaturePool.tier1.length);
+    this.localGameState.creaturePool.tier1.forEach((e: any) => {
+      console.log(e);
+    });
 
   }
 
@@ -205,55 +209,17 @@ export class TavernComponent {
     }
   }
 
+  pullRandomCreature(): Creature {
+    var originalCreature:Creature = this.localGameState.creaturePool.tier1[this.getRandomSlot(1)];
+    return originalCreature.clone(); // Return a copy of the creature
+  }
+
   onNext() {
-    switch (this.localGameState.turn) {
-      case 1: 
-        this.localGameState.playerList[1].creatureList.push(new Orc(this.globalBuffService)); 
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-        break;
-      case 2: 
-        this.localGameState.playerList[1].creatureList.push(new Orc(this.globalBuffService)); 
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-        break;
-      case 3: 
-        this.localGameState.playerList[1].creatureList.push(new SkeletonWarrior(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-        break;
-      case 4: 
-        this.localGameState.playerList[1].creatureList.push(new Necromancer(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-      break;
-      case 5:
-        this.localGameState.playerList[1].creatureList.push(new Necromancer(this.globalBuffService)); 
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-        break;
-      case 6:
-        this.localGameState.playerList[1].creatureList.push(new SkeletonWarrior(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-        break;
 
-      default:
-        this.localGameState.playerList[1].creatureList.splice(0,this.localGameState.playerList[1].creatureList.length);  
-        this.localGameState.playerList[1].creatureList.push(new TreeOfLife(this.globalBuffService));
-        this.localGameState.playerList[1].creatureList.push(new Mortiserion(this.globalBuffService)); 
-        this.localGameState.playerList[1].creatureList.push(new SkeletonWarrior(this.globalBuffService)); 
-        this.localGameState.playerList[1].creatureList.push(new SkeletonWarrior(this.globalBuffService));
-        this.localGameState.playerList[1].creatureList.push(new Necromancer(this.globalBuffService)); 
-        this.localGameState.playerList[1].creatureList.push(new Necromancer(this.globalBuffService)); 
-
-        this.localGameState.playerList[2].creatureList.splice(0,this.localGameState.playerList[2].creatureList.length);  
-        this.localGameState.playerList[2].creatureList.push(new Bard(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(new Bard(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(new Elaron(this.globalBuffService)); 
-        this.localGameState.playerList[2].creatureList.push(new Wizard(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(new Wizard(this.globalBuffService));
-        this.localGameState.playerList[2].creatureList.push(new Wizard(this.globalBuffService)); break;
-    
-    }
     for (var i = 3; i < this.localGameState.playerList.length; i++ ) {
         if (this.localGameState.playerList[i].creatureList.length < 8) {
-          let slot = this.getRandomSlot(1);
-          this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+          this.localGameState.playerList[i].creatureList.push(this.pullRandomCreature());
+
         }
         }
     this.localGameState.stage++;

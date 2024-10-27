@@ -2,6 +2,10 @@ import { Creature, CreatureType } from "./creature";
 import { CreatureStats } from "../creatureStats";
 
 export class DemonPortal extends Creature {
+    public override clone(): Creature {
+        return new DemonPortal(this.getGlobalBuffService(), this.getPlayerId());
+    }
+
     override getImage(): string {
         return this.getCreatureStats().image;
     }

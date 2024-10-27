@@ -2,6 +2,9 @@ import { Creature, CreatureType } from "./creature";
 import { CreatureStats } from "../creatureStats";
 
 export class FrostGiant extends Creature {
+    public override clone(): Creature {
+        return new FrostGiant(this.getGlobalBuffService(), this.getPlayerId());
+    }
     override getImage(): string {
         return this.getCreatureStats().image;
     }

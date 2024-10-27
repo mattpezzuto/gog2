@@ -25,14 +25,14 @@ export class Battle {
     pDamageDoneTeam2: number = 0;
     mDamageDoneTeam2: number = 0;
 
-    creaturePool: Creature[] = [];
+    creaturePoolSize: number;
     globalBuffService: GlobalBuffService;
 
-    constructor(globalBuffService:GlobalBuffService, player1: Player, player2: Player, creaturePool: Creature[]) {
+    constructor(globalBuffService:GlobalBuffService, player1: Player, player2: Player, creaturePoolSize: number) {
         this.globalBuffService = globalBuffService;
         this.player1 = player1;
         this.player2 = player2;
-        this.creaturePool = creaturePool;
+        this.creaturePoolSize = creaturePoolSize;
         this.titleLog = '';
     }
 
@@ -95,15 +95,15 @@ export class Battle {
 
     }
 
-    getNumberOfRats(): number {
-      var numberOfRats: number = 0;
-      for (var i = 0; i < this.creaturePool.length; i++) {
-        if (this.creaturePool[i].creatureType === CreatureType.InfestedRat) {
-          numberOfRats++;
-        }
-      }
-      return numberOfRats;
-    }
+    // getNumberOfRats(): number {
+    //   var numberOfRats: number = 0;
+    //   for (var i = 0; i < this.creaturePool.length; i++) {
+    //     if (this.creaturePool[i].creatureType === CreatureType.InfestedRat) {
+    //       numberOfRats++;
+    //     }
+    //   }
+    //   return numberOfRats;
+    // }
 
     resetTeam(team: Creature[]) : void {
       team.forEach(val => {
@@ -129,7 +129,7 @@ export class Battle {
             case 1:
               trojanHorseList.push(new Goblin(this.globalBuffService));
               trojanHorseList.push(new Gnome(this.globalBuffService));
-              if (this.creaturePool.length > 40) {
+              if (this.creaturePoolSize > 40) {
                 trojanHorseList.push(new Archer(this.globalBuffService));
               }
               trojanHorseList.push(new Orc(this.globalBuffService));
@@ -137,7 +137,7 @@ export class Battle {
             case 2:
               trojanHorseList.push(new Goblin(this.globalBuffService));
               trojanHorseList.push(new Gnome(this.globalBuffService));
-              if (this.creaturePool.length > 50) {
+              if (this.creaturePoolSize > 50) {
                 trojanHorseList.push(new Dragon(this.globalBuffService));
               } else {
                 trojanHorseList.push(new Orc(this.globalBuffService));

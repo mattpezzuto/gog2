@@ -2,6 +2,9 @@ import { Creature, CreatureType } from "./creature";
 import { CreatureStats } from "../creatureStats";
 
 export class Wizard extends Creature {
+    public override clone(): Creature {
+        return new Wizard(this.getGlobalBuffService(), this.getPlayerId());
+    }
     override getImage(): string {
         return this.getCreatureStats().image;
     }

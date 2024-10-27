@@ -53,7 +53,7 @@ export class BattleScreenBossComponent implements OnInit {
 
       // console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
 
-      var battle: Battle = new Battle(this.globalBuffService, this.localGameState.playerList[playerIndex], boss, this.localGameState.creaturePool.getCreaturePool());
+      var battle: Battle = new Battle(this.globalBuffService, this.localGameState.playerList[playerIndex], boss, this.localGameState.creaturePool.tier1.length);
 
       battle.performBattle();
       var winner = battle.getWinner();

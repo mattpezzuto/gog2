@@ -64,10 +64,18 @@ export abstract class Creature {
         this.gear = new Gear(GearType.Balanced);
     }
 
+    getGlobalBuffService(): GlobalBuffService { return this.globalBuffService; }
+    getPlayerId(): string { return this.playerId; }
+    
     abstract getCreatureStatsBaseline() : CreatureStats;
     abstract getCreatureType() : CreatureType;
     abstract getImage(): string;
+    public abstract clone(): Creature; // Abstract method to clone
 
+    getCurrentLife(): number {
+        const globalLifeBuff = this.globalBuffService.getGlobalLifeBuff(this.playerId, CreatureType[this.creatureType]);
+        return this.currentStats.life + this.getPermanentLifeBuff() + globalLifeBuff; 
+    }
 
     getCreatureStats(): CreatureStats { return this.creatureStats; }
     getCurrentStats(): CreatureStats { return this.currentStats; }
@@ -109,7 +117,10 @@ export abstract class Creature {
         this.currentStats.life += globalLifeBuff;
     }
 
+    
 }
+
+
 
 // export class Creature {
 //     readonly creatureType: CreatureType;

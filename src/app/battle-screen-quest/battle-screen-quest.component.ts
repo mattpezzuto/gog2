@@ -47,7 +47,7 @@ export class BattleScreenQuestComponent implements OnInit {
         questPlayer.creatureList.push(this.localGameState.playerList[0].questCreature);
       }
 
-      var battle: Battle = new Battle(this.globalBuffService, this.localGameState.playerList[0], questPlayer, this.localGameState.creaturePool.getCreaturePool());
+      var battle: Battle = new Battle(this.globalBuffService, this.localGameState.playerList[0], questPlayer, this.localGameState.creaturePool.tier1.length);
 
       battle.performBattle();
       var winner = battle.getWinner();
