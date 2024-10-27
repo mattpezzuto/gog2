@@ -78,7 +78,7 @@ export abstract class Creature {
     }
 
     isFilled(): boolean {
-        return this.creatureType !== CreatureType.Empty;
+        return this.creatureType !== CreatureType.Empty && this.creatureType !== CreatureType.Locked;
     }
 
     getCreatureStats(): CreatureStats { return this.creatureStats; }

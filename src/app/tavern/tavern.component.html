@@ -128,7 +128,7 @@
     <button class="button" *ngIf="getTavernCreature(2).sold || isPartyFull()" [disabled] = "true" (click)="onRecruit(2)">Recruit</button>
   </div>
 
-  <div class="itemBoard">Board</div>  
+  <div class="itemBoard">Adventuring Party:</div>  
   <div class="itemBoard1">
     <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>
     <img src="{{getPlayersBoard(0).getImage()}}" style="width:120;height:150px;">
@@ -184,7 +184,7 @@
   <div class="itemBoard6">
     <p *ngIf=getPlayersBoard(5)> {{getPlayersBoard(5).getName()}}</p>
     <img src="{{getPlayersBoard(5).getImage()}}" style="width:120;height:150px;">
-    <div class="creature-status">
+    <div *ngIf="getPlayersBoard(5).isFilled()" class="creature-status">
       <p>Attack Physical/Magical: {{ getPlayersBoard(5).getCurrentStats().attack }} / {{ getPlayersBoard(5).getCurrentStats().magicAttack }}</p>
       <p>Life: {{ getPlayersBoard(5).getCurrentLife() }}</p>
       <p>Armor: {{ getPlayersBoard(5).getCurrentStats().armor }}</p>
