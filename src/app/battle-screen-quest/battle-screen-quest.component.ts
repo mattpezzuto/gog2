@@ -44,7 +44,8 @@ export class BattleScreenQuestComponent implements OnInit {
 
       var questPlayer : Player = new Player("Quest", true);
       for (var i = 0; i< this.localGameState.playerList[0].questUnits; i++) {
-        questPlayer.creatureList.push(this.localGameState.playerList[0].questCreature);
+        var newQuestCreature = this.localGameState.playerList[0].questCreature.clone();
+        questPlayer.creatureList.push(newQuestCreature);
       }
 
       var battle: Battle = new Battle(this.globalBuffService, this.localGameState.playerList[0], questPlayer, this.localGameState.creaturePool.tier1.length);
@@ -72,7 +73,7 @@ export class BattleScreenQuestComponent implements OnInit {
           case QuestRewardType['Extra Refresh']:
             this.localGameState.playerList[0].refreshCounter += 1; break;
           case QuestRewardType['Recruit Unit']:
-            this.localGameState.creaturePool.addCreatureToPool(1, Utils.upgradeRecruitment(this.globalBuffService))
+            this.localGameState.creaturePool.tier1.push(Utils.upgradeRecruitment(this.globalBuffService));
             break;
           case QuestRewardType['Remove Infested Rat']:
             console.log('tier1 len = ' + this.localGameState.creaturePool.tier1.length);

@@ -18,6 +18,8 @@ import { EmptySlot } from '../creatures/emptySlot';
 import { LockedSlot } from '../creatures/lockedSlot';
 import { Elaron } from '../creatures/elaron';
 import { GlobalBuffService } from '../globalBuffService';
+import { Demon } from '../creatures/demon';
+import { Dragon } from '../creatures/dragon';
 
 @Component({
   selector: 'tavern',
@@ -101,7 +103,7 @@ export class TavernComponent {
         console.log('here zzz = ');
       }
       this.localGameState.playerList[0].creatureList.splice(slot, 1);
-      this.localGameState.creaturePool.addCreatureToPool(1, tempCreature.creatureType);
+      this.localGameState.creaturePool.tier1.push(tempCreature.creatureType);
       this.localGameState.playerList[0].gold += 50;
 
     }
@@ -155,7 +157,7 @@ export class TavernComponent {
 
   onUpgradeRecruitment() {
     if (this.localGameState.playerList[0].gold >= 100) {
-      this.localGameState.creaturePool.addCreatureToPool(1, Utils.upgradeRecruitment(this.globalBuffService))
+      this.localGameState.creaturePool.tier1.push(Utils.upgradeRecruitment(this.globalBuffService));
       this.localGameState.playerList[0].gold -= 100;
     }
   }
@@ -202,7 +204,10 @@ export class TavernComponent {
 
     for(var i = 1; i <= 3; i++){
       let poolSlot = this.getRandomSlot(1);
-      console.log('creaturePoolSize = ' + this.localGameState.creaturePool.length);
+      console.log('creaturePoolSize = ' + this.localGameState.creaturePool.tier1.length);
+      console.log('randomSlot = ' + poolSlot);
+
+      console.log(this.localGameState.creaturePool.tier1[poolSlot].getName());
       tempCreature = new TavernCreature(i, this.localGameState.creaturePool.tier1[poolSlot], poolSlot);
       this.tavernCreatureList.push(tempCreature);
     }
@@ -220,7 +225,7 @@ export class TavernComponent {
     var originalCreature:Creature = this.localGameState.creaturePool.tier1[this.getRandomSlot(1)];
     var newCreature = originalCreature.clone();
     newCreature.setPlayerId(playerId);
-    return originalCreature.clone(); // Return a copy of the creature
+    return newCreature; // Return a copy of the creature
   }
 
   onNext() {
@@ -243,11 +248,14 @@ export class TavernComponent {
 
     if (this.tavernCreatureList[slot].creature.getName() === 'Demon Portal') {
       console.log('adding 3 demons');
-      this.localGameState.creaturePool.addCreatureToPool(3, CreatureType.Demon);
-      this.localGameState.creaturePool.addCreatureToPool(3, CreatureType.Mortiserion);
+      this.localGameState.creaturePool.tier1.push(new Demon(this.globalBuffService));
+      this.localGameState.creaturePool.tier1.push(new Demon(this.globalBuffService));
+      this.localGameState.creaturePool.tier1.push(new Mortiserion(this.globalBuffService));
       // this.localGameState.playerList[0].creatureList.push(new Creature('Imp', 2, 2, 'blank.jpg'));
     } else if (this.tavernCreatureList[slot].creature.getName() === 'Dragon Egg') {
-        this.localGameState.creaturePool.addCreatureToPool(3, CreatureType.Dragon);
+        this.localGameState.creaturePool.tier1.push(new Dragon(this.globalBuffService));
+        this.localGameState.creaturePool.tier1.push(new Dragon(this.globalBuffService));
+        this.localGameState.creaturePool.tier1.push(new Dragon(this.globalBuffService));
         // this.localGameState.playerList[0].creatureList.push(new Creature(CreatureType.Dragon);
     } else if (this.tavernCreatureList[slot].creature.getName() === 'Bard') {
       this.tavernCreatureList[slot].creature.setPlayerId(this.localGameState.playerList[0].name);

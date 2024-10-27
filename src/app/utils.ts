@@ -10,7 +10,6 @@ export default class Utils {
     static upgradeRecruitment(globalBuffService: GlobalBuffService): Creature {
         var result: Creature;
         var pickOne = Math.floor((Math.random() * 4) + 0);
-        console.log('pickOne = ' + pickOne);
         switch(pickOne) {
           case 0:
             result = new Elaron(globalBuffService); break;
@@ -23,6 +22,8 @@ export default class Utils {
           default:
             result = new Archer(globalBuffService); break;
         }
+        console.log('pickOne = ' + pickOne);
+        console.log('new creature added = ' + result.getName());
         return result;
     }
 

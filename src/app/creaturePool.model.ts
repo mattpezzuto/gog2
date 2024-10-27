@@ -13,12 +13,6 @@ export class CreaturePool {
         this.tier3 = [];
     }
 
-    public addCreatureToPool(count: number, creature: Creature) {
-        for (var i = 0; i< count; i++) {
-            this.tier1.push(creature);
-        }
-      }
-
     removeCreatureFromPool(index: number){
         console.log('before:' + this.tier1.length);
         this.tier1.splice(index, 1);
