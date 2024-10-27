@@ -84,7 +84,7 @@ ${n.map((r,i)=>`${i+1}) ${r.toString()}`).join(`
     'battleLog battleLog battleLog battleLog battleLog';
 
   gap: 8px;
-  background-color: #2196F3;
+  background-color: #3a2a1a;
   padding: 8px;
 }
 
@@ -108,7 +108,7 @@ ${n.map((r,i)=>`${i+1}) ${r.toString()}`).join(`
     'battleLog battleLog battleLog battleLog battleLog';
 
   gap: 8px;
-  background-color: #2196F3;
+  background-color: #3a2a1a;
   padding: 8px;
 }
 
@@ -158,7 +158,7 @@ ${n.map((r,i)=>`${i+1}) ${r.toString()}`).join(`
 
 
   gap: 8px;
-  background-color: #2196F3;
+  background-color: #3a2a1a;
   padding: 8px;
 }
 
@@ -194,7 +194,7 @@ ul[_ngcontent-%COMP%] {
     'battleLog battleLog battleLog battleLog battleLog';
 
   gap: 8px;
-  background-color: #2196F3;
+  background-color: #3a2a1a;
   padding: 8px;
 }
 
@@ -267,7 +267,7 @@ ul[_ngcontent-%COMP%] {
     'player8 lifePlayer8 recordPlayer8 bossDmg8 units8';
 
   gap: 8px;
-  background-color: #2196F3;
+  background-color: #3a2a1a;
   padding: 8px;
 }
 
